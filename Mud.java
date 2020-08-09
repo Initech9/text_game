@@ -1,8 +1,8 @@
-public class main{
+public class Mud{
     
     public static void main(String[] args){
         
-        World world = new World();
+        new World();
 
 
     };
