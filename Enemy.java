@@ -1,27 +1,30 @@
-<<<<<<< Updated upstream
-public class Enemy {
-=======
 import java.util.*;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 //import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+//import javax.swing.*;
+//import java.awt.*;//
 
 
-public class Enemy implements Runnable{
->>>>>>> Stashed changes
+//Window activeWindow = javax.swing.FocusManager.getCurrentManager().getActiveWindow();
 
+
+public class Enemy implements Runnable {
+
+    //KeyboardFocusManager currentManager = KeyboardFocusManager.getCurrentKeyboardFocusManager();  
+//Window activeWindow = getActiveWindow();
+
+
+
+
+
+
+    //Window activeWindow;
     public int health = 100;
     public String name;
     public int attackPower = 9;
 
-<<<<<<< Updated upstream
-    Enemy(){
-
-        //this.health = this.health - attacked;
-    };
-
-=======
     //enum Modes {ROAM, ATTACK};
       
     public short mode;
@@ -48,7 +51,8 @@ public class Enemy implements Runnable{
         
         System.out.println("thread is running...");  
  
-
+        
+       // javax.swing.FocusManager.getCurrentManager().getGlobalActiveWindow();
 
 
 
@@ -63,12 +67,27 @@ public class Enemy implements Runnable{
             rand = random.nextInt(9); 
 
             
+
             
-            while(movement == true){
+            //activeWindow = getSelectedWindow(5);
+
+
+
+            
+            while(movement == true ){
+                //activeWindow = getActiveWindow();
+
+
+
+
+               
+
+                //System.out.println("WINDOW" + activeWindow );
                 Thread.sleep(TimeUnit.SECONDS.toMillis(5));
             robot.keyPress(KeyEvent.VK_ENTER);
             robot.keyRelease(KeyEvent.VK_ENTER);
             
+            //System.out.println("WINDOW WOW" + activeWindow.getName() );
            // this.enemy = new Enemy(3);
            if(this.mode == 1){
             for(int i=0; i < 5; i++){
@@ -99,6 +118,10 @@ public class Enemy implements Runnable{
 
     }
 
+    
+
+
+
 
     public int moveAround(int location){
 
@@ -114,10 +137,11 @@ public class Enemy implements Runnable{
     }
 
     
->>>>>>> Stashed changes
     void attackPlayer(Player plr){
         plr.health -= this.attackPower;
 
     };
     
+
+
 }
