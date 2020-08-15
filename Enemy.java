@@ -25,6 +25,9 @@ public class Enemy implements Runnable {
     public String name;
     public int attackPower = 9;
 
+
+    
+
     //enum Modes {ROAM, ATTACK};
       
     public short mode;

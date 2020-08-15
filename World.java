@@ -23,7 +23,15 @@ public class World {
     Thread threadPlayer;
     Thread thread;
     Thread thread2;
+    String words[] = new String[10];
+
+
+
+
     
+
+
+
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -184,6 +192,7 @@ public class World {
 
     public void enemyHere() {
 
+        String command = player.enterDirection();
 
         for(int i = 0; i < enemy.length; i++){
         if (player.mapLocation == enemy[i].mapLocation){
@@ -198,7 +207,10 @@ public class World {
 
             enemy[i].enemyAttack();
 
-            enterDirection( player.enterDirection()  );
+            if( command.startsWith("a") )
+            attackEnemy( command );
+            else        
+            enterDirection( command  );
             
             
             //return true;
@@ -211,6 +223,38 @@ public class World {
             //return false;
     } 
 
+
+
+
+public void attackEnemy(String attack){
+
+    
+
+
+    //public Enemy enemy[] = new Enemy[2];
+    //attack.getChars(0, 0, words, 0);
+    //attack.getChars(2, 2, words, 1);
+
+
+    words[0] = attack.substring(0, 1);
+    words[1] = attack.substring(2, 3);
+
+if(words[0].equals("a")){
+
+    if(  words.length > 1 && words[0].equals("a")     &&     words[1].equals("o")   ){
+        System.out.println("You attack Orc for 5 damage!");
+
+    }
+}
+    System.out.println("WORDS " + words[1]   );
+
+
+    words[0] = "";
+    words[1] = "";
+    words[2] = null;
+    words[3] = null;
+
+}
 
 
 
