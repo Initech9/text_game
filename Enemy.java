@@ -81,7 +81,7 @@ public class Enemy implements Runnable {
 
 
             
-            while(movement == true ){
+            while(movement == true){
                 //activeWindow = getActiveWindow();
 
 
@@ -90,6 +90,7 @@ public class Enemy implements Runnable {
                if(this.health < 1){
                alive = false;
                 this.name = this.deadName;
+                this.movement = false;
                }
 
                 //System.out.println("WINDOW" + activeWindow );
