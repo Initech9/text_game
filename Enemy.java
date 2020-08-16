@@ -21,9 +21,11 @@ public class Enemy implements Runnable {
 
 
     //Window activeWindow;
-    public int health = 100;
+    public int health = 10;
     public String name;
     public int attackPower = 9;
+
+    public boolean alive = false; 
 
 
     
@@ -40,12 +42,14 @@ public class Enemy implements Runnable {
     public int newLocation;
     public String exits = "11111111";
     Robot robot;
+    public String deadName;
 
     Enemy(String namee, int location){
 
         this.name = namee;
-        this.mapLocation = location;   
-        
+        this.mapLocation = location; 
+        this.deadName = "Dead " + this.name;  
+        this.alive = true;
         //this.movement = true;
         //this.health = this.health - attacked;
     };
@@ -53,7 +57,7 @@ public class Enemy implements Runnable {
     public void run(){  
         
         System.out.println("thread is running...");  
- 
+        
         
        // javax.swing.FocusManager.getCurrentManager().getGlobalActiveWindow();
 
@@ -83,22 +87,25 @@ public class Enemy implements Runnable {
 
 
 
-               
+               if(this.health < 1){
+               alive = false;
+                this.name = this.deadName;
+               }
 
                 //System.out.println("WINDOW" + activeWindow );
                 Thread.sleep(TimeUnit.SECONDS.toMillis(5));
             robot.keyPress(KeyEvent.VK_ENTER);
             robot.keyRelease(KeyEvent.VK_ENTER);
             
-            //System.out.println("WINDOW WOW" + activeWindow.getName() );
-           // this.enemy = new Enemy(3);
-           if(this.mode == 1){
-            for(int i=0; i < 5; i++){
-            enemyAttack();
-                Thread.sleep(500);
-            }
-        }else
-            this.mode = 0;
+        
+            
+        //    if(this.mode == 1){
+        //     for(int i=0; i < 5; i++){
+        //     enemyAttack();
+        //         Thread.sleep(500);
+        //     }
+        // }else
+        //     this.mode = 0;
 
 
     }
@@ -112,14 +119,16 @@ public class Enemy implements Runnable {
  
     }
 
-    public void enemyAttack(){
+    public void displayEnemyAttack(){
 
-       
+        if(this.alive == true)
             System.out.println(this.name + " attacks you for " + this.attack + " damage!!");
 
 
 
     }
+
+    
 
     
 
