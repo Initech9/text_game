@@ -1,4 +1,4 @@
-import java.time.Year;
+//import java.time.Year;
 import java.util.*;
 import java.util.Scanner;
 
@@ -56,7 +56,7 @@ public class World {
     
     public World() {
         enemy[0] = new Enemy("Dragon", 1);
-        enemy[1] = new Enemy("Orc", 4);
+        enemy[1] = new Enemy("Orc", 1);
         threadPlayer = new Thread(player);
         thread = new Thread(enemy[0]);
         thread2 = new Thread(enemy[1]);
@@ -98,44 +98,43 @@ public class World {
 
 
 
-            
+            randdd =  Math.abs( randomTrue.nextInt()  );
+            enemy[1].rand = Math.abs(randdd % 9);
 
-            randdd =  Math.abs( randomTrue.nextInt()+321 );
+            randdd =  Math.abs( randomTrue.nextInt() );
             enemy[0].rand = Math.abs(randdd % 9);
             //randomTrue = new Random(System.currentTimeMillis());
-            randdd =  Math.abs( randomTrue.nextInt()+942 );
-            enemy[1].rand = Math.abs(randdd % 9);
+            //randdd =  Math.abs( randomTrue.nextInt()+942 );
+           
             //System.out.println("Enemy Exits " + enemyExits);
             //System.out.println("RAND IS" + enemy[0].rand);
             //System.out.println("RAND IS" + enemy[1].rand);
-            getExits();
+            //getExits();
 
-<<<<<<< Updated upstream
+
+
+
+            System.out.println(ANSI_RED + "Also Here: " + ANSI_RED);
             for(int i = 0; i < enemy.length; i++){
-                enemy[i].exits = this.map.map[enemy[i].mapLocation];
 
-                System.out.println(ANSI_RED + "Also Here: " + ANSI_RED + enemy[i].name + ANSI_RESET);
-=======
->>>>>>> Stashed changes
-
-            for(int i = 0; i < enemy.length; i++){
-                if (player.mapLocation == enemy[i].mapLocation){
-            
-                    System.out.println(ANSI_RED + "Also Here: " + ANSI_RED + enemy[i].name + ANSI_RESET);
-                }
-
-            command = player.enterDirection();
-                //enemyHere(command);
-                enterDirection(command);
-
-                 
 
                 
+                enemy[i].exits = this.map.map[enemy[i].mapLocation];
+                
+                if(player.mapLocation == enemy[i].mapLocation)
+                System.out.println( ANSI_RED + enemy[i].name + ANSI_RESET);
 
                 };
-            command = player.enterDirection();
+
+                command = player.enterDirection();
+                //enemyHere(command);
+                enemyHere(command);
+                enterDirection(command);
+
+
+            //command = player.enterDirection();
                
-                 enemyHere(command);
+                 //enemyHere(command);
 
 
 
@@ -146,7 +145,7 @@ public class World {
                 System.out.print(" Dragon is at map location " + enemy[0].mapLocation);
                 System.out.println(" Orc is at map location  " + enemy[1].mapLocation);
                 
-                enemyHere(command);
+                
 
 
 
@@ -157,9 +156,9 @@ public class World {
                 
 
             // NOTE: CONTROL ENEMY MOVEMENT HERE!!!
-            for(int j = 0; j < enemy.length-1; j++){
-            if (enemy[j].movement == true && enemy[j].mode != 1) {
-                switch (enemy[j].rand) {
+            for(int i = 0; i < enemy.length; i++){
+            if (enemy[i].movement == true && enemy[i].mode != 1) {
+                switch (enemy[i].rand) {
                     case 0:
                         enemyGoNorth();
                         break;
@@ -212,7 +211,7 @@ public class World {
 
 
 
-    };
+ 
 
 
 
@@ -220,11 +219,11 @@ public class World {
 
     
 
-    public boolean enemyHere(String command) {
+    public void enemyHere(String command) {
 
         //String command = player.enterDirection();
 
-        for(int i = 0; i < enemy.length;  ){
+        for(int i = 0; i < enemy.length; i++ ){
         if (player.mapLocation == enemy[i].mapLocation){
             
         
@@ -235,11 +234,11 @@ public class World {
 
             enemy[i].mode = 1;//ATTACK mode
 
-            if(player.isTyping == false && enemy[i].alive ){
+            if(player.isTyping == false && enemy[i].alive == true){
             enemy[i].displayEnemyAttack();
             player.health -= enemy[i].attack;
             }
-            else if(enemy[i].alive)
+            else if(enemy[i].alive == true && player.isTyping == false)
             player.health -= enemy[i].attack;   //NOTE THIS ONLY ATTACKS ONCE
 
             if( command.startsWith("a") )
@@ -256,14 +255,14 @@ public class World {
             //enterDirection( command  );
             
             
-            return true;
+            //return true;
 
             }else{
                 enemy[i].mode = 0;//ROAM mode
-                return false;
+                //return false;
                 }
             }    
-            return false;
+           // return false;
     } 
 
 
@@ -271,23 +270,29 @@ public class World {
 
 public void attackEnemy(String attack){
 
-
+   
+    
+    
+    
+    if(words.length < 3){};
+    if(words.length > 2){
     words[0] = attack.substring(0, 1);
-    if(words.length > 2)
     words[1] = attack.substring(2, 3);
+    }
 
 if(words[0].equals("a")){
 
-    if(  words.length > 1 && words[0].equals("a")     &&     words[1].equals("o")   ){
-        System.out.println("You attack Orc for 5 damage!");
+
+    if( words[1].equals("o")   ){
+        System.out.println("You attack Orc for 5 damage! "  + enemy[1].health);
         enemy[1].health -= 5;
 
-    }else if(  words.length > 1 && words[0].equals("a")     &&     words[1].equals("d")   ){
+    }else if(  words[1].equals("d")   ){
         System.out.println("You attack Dragon for 5 damage! " + enemy[0].health);
         enemy[0].health -= 5;
     } 
 }
-    System.out.println("WORDS " + words[1]   );
+    //System.out.println("WORDS " + words[1]   );
 
 
     words[0] = "";

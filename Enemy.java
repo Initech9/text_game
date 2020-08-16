@@ -71,8 +71,8 @@ public class Enemy implements Runnable {
 
             //System.out.println("NEW " + newLocation);
 
-            rand = random.nextInt(9); 
-
+            rand = Math.abs( random.nextInt()  );
+            
             
 
             
