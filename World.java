@@ -1,3 +1,4 @@
+import java.time.Year;
 import java.util.*;
 import java.util.Scanner;
 
@@ -23,7 +24,17 @@ public class World {
     Thread threadPlayer;
     Thread thread;
     Thread thread2;
+    String words[] = new String[10];
+
+    String command;
+    //public boolean isTyping = false;
+
+
+
     
+
+
+
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -85,20 +96,31 @@ public class World {
             //System.out.println("Enemy Exits " + enemyExits);
             //System.out.println("RAND IS" + enemy[0].rand);
             //System.out.println("RAND IS" + enemy[1].rand);
-            
-            //if(enemyHere() == false){
-                enemyHere();
-                enterDirection( player.enterDirection()  );
+            getExits();
 
+            for(int i = 0; i < enemy.length; i++){
+                enemy[i].exits = this.map.map[enemy[i].mapLocation];
+                
+
+                };
+            command = player.enterDirection();
+               
+                 enemyHere(command);
+
+
+                 getExits();
+                
+                    player.displayHealth();
+               
                 System.out.print(" Dragon is at map location " + enemy[0].mapLocation);
                 System.out.println(" Orc is at map location  " + enemy[1].mapLocation);
                 
-                
-                for(int i = 0; i < enemy.length; i++){
-                enemy[i].exits = this.map.map[enemy[i].mapLocation];
-                getExits();
+                enemyHere(command);
 
-                };
+
+
+
+
                 
            // }else
                 
@@ -162,32 +184,13 @@ public class World {
 
 
 
+    public boolean enemyHere(String command) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public void enemyHere() {
-
+        //String command = player.enterDirection();
 
         for(int i = 0; i < enemy.length; i++){
         if (player.mapLocation == enemy[i].mapLocation){
-       
+            
         
             //enemy[i].mode =   enemy;
             //System.out.println(ANSI_RED + "Also Here: " + ANSI_RESET);
@@ -196,21 +199,62 @@ public class World {
 
             enemy[i].mode = 1;//ATTACK mode
 
-            enemy[i].enemyAttack();
+            if(player.isTyping == false && enemy[i].alive ){
+            enemy[i].displayEnemyAttack();
+            player.health -= enemy[i].attack;
+            }
+            else if(enemy[i].alive)
+            player.health -= enemy[i].attack;   //NOTE THIS ONLY ATTACKS ONCE
 
-            enterDirection( player.enterDirection()  );
+            if( command.startsWith("a") )
+            attackEnemy( command );
+            //else        
+            //
             
             
-            //return true;
+            
+            //enterDirection( command  );
+            
+            
+            return true;
 
             }else{
                 enemy[i].mode = 0;//ROAM mode
-                //return false;
+                return false;
                 }
             }    
-            //return false;
+            return false;
     } 
 
+
+
+
+public void attackEnemy(String attack){
+
+
+    words[0] = attack.substring(0, 1);
+    words[1] = attack.substring(2, 3);
+
+if(words[0].equals("a")){
+
+    if(  words.length > 1 && words[0].equals("a")     &&     words[1].equals("o")   ){
+        System.out.println("You attack Orc for 5 damage!");
+        enemy[1].health -= 5;
+
+    }else if(  words.length > 1 && words[0].equals("a")     &&     words[1].equals("d")   ){
+        System.out.println("You attack Dragon for 5 damage! " + enemy[0].health);
+        enemy[0].health -= 5;
+    } 
+}
+    System.out.println("WORDS " + words[1]   );
+
+
+    words[0] = "";
+    words[1] = "";
+    words[2] = null;
+    words[3] = null;
+
+}
 
 
 
@@ -324,6 +368,7 @@ public class World {
 
         }
         ;
+        player.isTyping = false;
 
     };
 
