@@ -51,6 +51,9 @@ public class World {
     int randdd =  randomTrue.nextInt();
 
 
+    
+
+    
     public World() {
         enemy[0] = new Enemy("Dragon", 1);
         enemy[1] = new Enemy("Orc", 4);
@@ -83,30 +86,46 @@ public class World {
             //System.out.println("Obvious exits: ");
 
 
-            
-            randomTrue = new Random(System.currentTimeMillis());
+            //randdd =  Math.abs( randomTrue.nextInt();
+            //randdd = randomTrue;
+
             
             //randomTrue = randomTrue.nextInt();
+
+
            // double randd = randomTrue;
             //randomTrue.nextInt();
+
+
+
+            
+
+            randdd =  Math.abs( randomTrue.nextInt()+321 );
             enemy[0].rand = Math.abs(randdd % 9);
             //randomTrue = new Random(System.currentTimeMillis());
-            randdd =  randomTrue.nextInt()+321;
+            randdd =  Math.abs( randomTrue.nextInt()+942 );
             enemy[1].rand = Math.abs(randdd % 9);
             //System.out.println("Enemy Exits " + enemyExits);
             //System.out.println("RAND IS" + enemy[0].rand);
             //System.out.println("RAND IS" + enemy[1].rand);
             getExits();
 
+<<<<<<< Updated upstream
             for(int i = 0; i < enemy.length; i++){
                 enemy[i].exits = this.map.map[enemy[i].mapLocation];
 
                 System.out.println(ANSI_RED + "Also Here: " + ANSI_RED + enemy[i].name + ANSI_RESET);
+=======
+>>>>>>> Stashed changes
 
+            for(int i = 0; i < enemy.length; i++){
+                if (player.mapLocation == enemy[i].mapLocation){
+            
+                    System.out.println(ANSI_RED + "Also Here: " + ANSI_RED + enemy[i].name + ANSI_RESET);
+                }
 
-                };
             command = player.enterDirection();
-                enemyHere(command);
+                //enemyHere(command);
                 enterDirection(command);
 
                  
@@ -138,9 +157,9 @@ public class World {
                 
 
             // NOTE: CONTROL ENEMY MOVEMENT HERE!!!
-            for(int i = 0; i < enemy.length-1; i++){
-            if (enemy[i].movement == true && enemy[i].mode != 1) {
-                switch (enemy[i].rand) {
+            for(int j = 0; j < enemy.length-1; j++){
+            if (enemy[j].movement == true && enemy[j].mode != 1) {
+                switch (enemy[j].rand) {
                     case 0:
                         enemyGoNorth();
                         break;
@@ -188,6 +207,7 @@ public class World {
 
             // exits = map.map[player.mapLocation];
             // exits = map.map[player.mapLocation];
+            }
         }
 
 
@@ -196,18 +216,22 @@ public class World {
 
 
 
+
+
+    
+
     public boolean enemyHere(String command) {
 
         //String command = player.enterDirection();
 
-        for(int i = 0; i < enemy.length; i++){
+        for(int i = 0; i < enemy.length;  ){
         if (player.mapLocation == enemy[i].mapLocation){
             
         
             //enemy[i].mode =   enemy;
             //System.out.println(ANSI_RED + "Also Here: " + ANSI_RESET);
             
-            System.out.println(ANSI_RED + "Also Here: " + ANSI_RED + enemy[i].name + ANSI_RESET);
+           // System.out.println(ANSI_RED + "Also Here: " + ANSI_RED + enemy[i].name + ANSI_RESET);
 
             enemy[i].mode = 1;//ATTACK mode
 
@@ -249,6 +273,7 @@ public void attackEnemy(String attack){
 
 
     words[0] = attack.substring(0, 1);
+    if(words.length > 2)
     words[1] = attack.substring(2, 3);
 
 if(words[0].equals("a")){

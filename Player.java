@@ -56,6 +56,10 @@ public class Player implements Runnable {
         System.out.println("Health: " + this.health);
     }
 
+
+
+
+    
     public String enterDirection(){
         isTyping = true;
         
