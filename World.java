@@ -100,12 +100,24 @@ public class World {
 
             for(int i = 0; i < enemy.length; i++){
                 enemy[i].exits = this.map.map[enemy[i].mapLocation];
+
+                System.out.println(ANSI_RED + "Also Here: " + ANSI_RED + enemy[i].name + ANSI_RESET);
+
+
+                };
+            command = player.enterDirection();
+                enemyHere(command);
+                enterDirection(command);
+
+                 
+
                 
 
                 };
             command = player.enterDirection();
                
                  enemyHere(command);
+
 
 
                  getExits();
@@ -210,7 +222,11 @@ public class World {
             attackEnemy( command );
             //else        
             //
+
+            //System.out.println(ANSI_RED + "Also Here: " + ANSI_RED + enemy[i].name + ANSI_RESET);
+
             
+
             
             
             //enterDirection( command  );
