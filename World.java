@@ -26,6 +26,8 @@ public class World {
     Thread thread2;
     String words[] = new String[10];
 
+
+
     String command;
     //public boolean isTyping = false;
 
@@ -55,6 +57,17 @@ public class World {
 
     
     public World() {
+
+        for(int i = 0; i < 10; i++){
+
+            words[i] = "z";
+    
+
+
+
+
+        }
+
         enemy[0] = new Enemy("Dragon", 1);
         enemy[1] = new Enemy("Orc", 1);
         threadPlayer = new Thread(player);
@@ -270,28 +283,38 @@ public class World {
 
 public void attackEnemy(String attack){
 
-   
-    
-    
-    
-    if(words.length < 3){};
-    if(words.length > 2){
+    //if(words.length < 3){};
+ 
+    if(attack.length() > 1 && attack.length() != 2){
     words[0] = attack.substring(0, 1);
+
+    
     words[1] = attack.substring(2, 3);
+
     }
 
-if(words[0].equals("a")){
+System.out.println("LENGTH IS " + words.length);
 
 
-    if( words[1].equals("o")   ){
-        System.out.println("You attack Orc for 5 damage! "  + enemy[1].health);
-        enemy[1].health -= 5;
 
-    }else if(  words[1].equals("d")   ){
-        System.out.println("You attack Dragon for 5 damage! " + enemy[0].health);
-        enemy[0].health -= 5;
-    } 
-}
+
+
+
+
+    if(words[0].equals("a")  ){
+
+        System.out.println("words 1 is " );
+        if( words[1].equals("o")  ){
+            System.out.println("You attack Orc for 5 damage! "  + enemy[1].health);
+            enemy[1].health -= 5;
+    
+        }else if(  words[1].equals("d") ){
+            System.out.println("You attack Dragon for 5 damage! " + enemy[0].health);
+            enemy[0].health -= 5;
+        } 
+        words[0] = "z";
+    }
+
     //System.out.println("WORDS " + words[1]   );
 
 
