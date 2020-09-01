@@ -122,7 +122,7 @@ public class World {
             //System.out.println("Enemy Exits " + enemyExits);
             //System.out.println("RAND IS" + enemy[0].rand);
             //System.out.println("RAND IS" + enemy[1].rand);
-            //getExits();
+            getExits();
 
 
 

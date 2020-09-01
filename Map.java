@@ -5,8 +5,8 @@ import java.io.FileReader;
 public class Map {
 
     // n, s, e, w, ne, se, sw, nw
-    public static int WIDTH = 3;
-    public static int HEIGHT = 3;
+    public static int WIDTH = 6;
+    public static int HEIGHT = 6;
 
     public static String map[] = new String[WIDTH*HEIGHT+1];
 
